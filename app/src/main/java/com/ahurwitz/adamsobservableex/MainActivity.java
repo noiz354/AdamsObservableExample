@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         objects.add(obj4);
         objects.add(obj5);
 
-        TextView obj1View = (TextView) findViewById(R.id.obj1_id);
-        TextView obj2View = (TextView) findViewById(R.id.obj2_id);
-        TextView obj3View = (TextView) findViewById(R.id.obj3_id);
-        TextView obj4View = (TextView) findViewById(R.id.obj4_id);
-        TextView obj5View = (TextView) findViewById(R.id.obj5_id);
+        TextView obj1View = findViewById(R.id.obj1_id);
+        TextView obj2View = findViewById(R.id.obj2_id);
+        TextView obj3View = findViewById(R.id.obj3_id);
+        TextView obj4View = findViewById(R.id.obj4_id);
+        TextView obj5View = findViewById(R.id.obj5_id);
 
         obj1View.setText(String.valueOf(obj1.getVal()));
         obj2View.setText(String.valueOf(obj2.getVal()));
@@ -47,43 +47,42 @@ public class MainActivity extends AppCompatActivity {
         obj4View.setText(String.valueOf(obj4.getVal()));
         obj5View.setText(String.valueOf(obj5.getVal()));
 
-        Switch switchBtn = (Switch) findViewById(R.id.boolean_switch_btn);
+        Switch switchBtn = findViewById(R.id.boolean_switch_btn);
 
-        switchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Observable myObservable = Observable.from(objects);
-                if (switchBtn.isChecked()) {
-                    switchBtn.setChecked(true);
-                    // .from() goes through each item of iterable object like a List
-                    myObservable.map(transformList(true))
-                            .toList()
-                            .toBlocking()
-                            .single();
+        switchBtn.setOnClickListener(view -> {
+            Observable myObservable = Observable.from(objects);
+            if (switchBtn.isChecked()) {
+                switchBtn.setChecked(true);
+                // .from() goes through each item of iterable object like a List
+                myObservable.map(transformList(true))
+                        .toList()
+                        .toBlocking()
+                        .single();
 
-                    Log.v(LOG_TAG, "Transform Observable: " +
-                            myObservable.map(transformList(true))
-                                    .toList()
-                                    .toBlocking()
-                                    .single()
-                    );
-                    obj1View.setText(String.valueOf(obj1.getVal()));
-                    obj2View.setText(String.valueOf(obj2.getVal()));
-                    obj3View.setText(String.valueOf(obj3.getVal()));
-                    obj4View.setText(String.valueOf(obj4.getVal()));
-                    obj5View.setText(String.valueOf(obj5.getVal()));
-                } else {
-                    myObservable.map(transformList(false))
-                            .toList()
-                            .toBlocking()
-                            .single();
-                    obj1View.setText(String.valueOf(obj1.getVal()));
-                    obj2View.setText(String.valueOf(obj2.getVal()));
-                    obj3View.setText(String.valueOf(obj3.getVal()));
-                    obj4View.setText(String.valueOf(obj4.getVal()));
-                    obj5View.setText(String.valueOf(obj5.getVal()));
-                }
+                Log.v(LOG_TAG, "Transform Observable: " +
+                        myObservable.map(transformList(true))
+                                .toList()
+                                .toBlocking()
+                                .single()
+                );
+                obj1View.setText(String.valueOf(obj1.getVal()));
+                obj2View.setText(String.valueOf(obj2.getVal()));
+                obj3View.setText(String.valueOf(obj3.getVal()));
+                obj4View.setText(String.valueOf(obj4.getVal()));
+                obj5View.setText(String.valueOf(obj5.getVal()));
+            } else {
+                myObservable.map(transformList(false))
+                        .toList()
+                        .toBlocking()
+                        .single();
+                obj1View.setText(String.valueOf(obj1.getVal()));
+                obj2View.setText(String.valueOf(obj2.getVal()));
+                obj3View.setText(String.valueOf(obj3.getVal()));
+                obj4View.setText(String.valueOf(obj4.getVal()));
+                obj5View.setText(String.valueOf(obj5.getVal()));
             }
+
+            //TODO do something in here
         });
     }
 
