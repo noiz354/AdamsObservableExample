@@ -1,17 +1,5 @@
 apply plugin: 'com.android.application'
 
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "gradle.plugin.me.tatarka:gradle-retrolambda:3.2.5"
-    }
-}
-
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
 
@@ -20,13 +8,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.ahurwitz.adamsobservableex"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -41,10 +29,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
     //jackson json
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
 }
