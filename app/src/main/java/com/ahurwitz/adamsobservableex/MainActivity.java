@@ -9,6 +9,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 
+import com.ahurwitz.adamsobservableex.rxjava.Problem1;
+
 import java.util.ArrayList;
 
 import rx.Observable;
